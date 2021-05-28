@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <h2 class="page-header">Promise Introduction</h2>
+        <button class="btn btn-primary" id="btn">draw a lottery</button>
+    </div>
+<script>
+    function rand(m, n) {
+        return Math.ceil(Math.random() * (n-m+1) + m-1);
+    }
+    const btn = document.querySelector('#btn')
+    btn.addEventListener('click', function () {
+        // setTimeout(()=>{
+        //     let n = rand(1,100)
+        //     if(n<=30){
+        //         alert("congratulations!")
+        //     }else{
+        //         alert("please try again")
+        //     }
+        // })
+
+        //参数 resolve解决 函数类型的数据，异步任务成功调这个
+        //参数 reject拒绝  函数类型的数据，异步任务失败调这个
+        const p = new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+                let n = rand(1,100)
+                if(n<=30){
+                    resolve();//将p对象状态设为成功
+                }else{
+                    reject();//将p对象状态设为失败
+                }
+            }, 1000);
+        });
+        p.then(()=>{
+            alert("congratuations");
+        }, ()=>{
+            alert("try again");
+        });
+    })
+</script>
+</body>
+</html>
