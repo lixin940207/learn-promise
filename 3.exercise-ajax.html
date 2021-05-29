@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise 封装 ajax</title>
+</head>
+<body>
+<div class="container">
+    <h2 class="page-header">Promise ajax</h2>
+    <button class="btn btn-primary" id="btn">send ajax</button>
+</div>
+<script>
+    const btn = document.querySelector('#btn')
+    btn.addEventListener('click', function () {
+        const p = new Promise((resolve, reject) => {
+            // 创建对象
+            const xhr = new XMLHttpRequest();
+            // 初始化，设置请求方法和url
+            xhr.open('GET', 'http://api.apiopen.top/getJoke');
+            // 发送
+            xhr.send();
+            // 事件绑定
+            // readystate是xhr对象中的属性，有01234
+            // 改一次触发一次
+            xhr.onreadystatechange = function (){
+                // 服务端返回所有结果
+                if(xhr.readState === 4){
+                    if(xhr.status >= 200 && xhr.status < 300){
+                        resolve(xhr.response)
+
+                    }else{
+                        reject(xhr.status)
+                    }
+                }
+            }
+        });
+        p.then(value => {
+            console.log(value)
+        }, reason => {
+            console.log(reason)
+        })
+    })
+</script>
+</body>
+</html>

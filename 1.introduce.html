@@ -30,16 +30,16 @@
             setTimeout(()=>{
                 let n = rand(1,100)
                 if(n<=30){
-                    resolve();//将p对象状态设为成功
+                    resolve(n);//将p对象状态设为成功
                 }else{
-                    reject();//将p对象状态设为失败
+                    reject(n);//将p对象状态设为失败
                 }
             }, 1000);
         });
-        p.then(()=>{
-            alert("congratuations");
-        }, ()=>{
-            alert("try again");
+        p.then((value)=>{
+            alert(`congratuations${value}`);
+        }, (reason)=>{
+            alert(`try again${reason}`);
         });
     })
 </script>
