@@ -1,0 +1,19 @@
+{
+  "name": "learn-promise",
+  "version": "1.0.0",
+  "description": "",
+  "main": "2.exercise.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lixin940207/learn-promise.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lixin940207/learn-promise/issues"
+  },
+  "homepage": "https://github.com/lixin940207/learn-promise#readme"
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /*
+        resolve and reject are static methods
+         */
+        let p = Promise.resolve(521) // 返回成功的promise对象
+        // 如果传入的参数为非promise类型的对象，则返回的结果为成功promise对象
+        // 如果传入的参数为promise类型的对象，则参数的结果决定了resolve的结果
+        let p2 = Promise.resolve(new Promise((resolve, reject) => {
+            reject('OK')
+        })) // 返回的promise对象成功或失败取决于传入的promise对象
+        //console.log(p2)
+        p2.catch(reason => {
+            console.log(reason)
+        })
+
+        // reject 函数，哪怕传入的promise对象是成功的，结果也是失败的
+        let p3 = Promise.reject(new Promise((resolve, reject) => {
+            resolve('OK')
+        }))
+        console.log(p3)
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // catch is instance methods
+        let p1 = new Promise((resolve, reject) => {
+            resolve('OK')
+        });
+
+        let p2 = Promise.reject("sucess");
+        let p3 = Promise.resolve("Yeah")
+
+        const result = Promise.all([p1,p2,p3])
+        console.log(result)
+
+    </script>
+</body>
+</html>

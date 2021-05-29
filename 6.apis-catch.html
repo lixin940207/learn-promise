@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        // catch is instance methods
+        let p = new Promise((resolve, reject) => {
+            reject('error')
+        });
+
+        // catch 只接受失败函数
+        p.catch(reason => {
+            console.log(reason)
+        })
+    </script>
+</body>
+</html>
