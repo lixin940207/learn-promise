@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let p = Promise.resolve(new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                reject('err')
+            }, 1000)
+        }))
+        //
+        p.then(value => {
+            console.log(111)
+        }).then(value => {
+            console.log(222)
+        }).then(value => {
+            console.log(333)
+        }).catch(reason => {
+            console.warn(reason)
+        })
+
+
+    </script>
+</body>
+</html>

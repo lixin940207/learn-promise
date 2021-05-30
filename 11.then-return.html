@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let p = Promise.resolve(new Promise((resolve, reject) => {
+            resolve('ok')
+        }))
+        //
+        let result = p.then(value => {
+            console.log(value) //result是成功的promise对象，promiseResult是undefined
+            // throw Error result是失败的promise对象
+            // return 521; result是成功的promise对象，promiseResult是521
+            // return new Promise(......) 返回按照这个新的promise对象来决定
+        }, reason => {
+            console.log(reason)
+        })
+        console.log(result)
+
+    </script>
+</body>
+</html>

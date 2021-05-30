@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let p = Promise.resolve(new Promise((resolve, reject) => {
+            setTimeout(()=>{
+                resolve('ok')
+            }, 1000)
+        }))
+        //
+        p.then(value => {
+            console.log(111)
+            //只有一种方式,放回pending状态的promise对象
+            return new Promise(()=>{
+
+            })
+        }).then(value => {
+            console.log(222)
+        }).then(value => {
+            console.log(333)
+        }).catch(reason => {
+            console.warn(reason)
+        })
+
+
+    </script>
+</body>
+</html>

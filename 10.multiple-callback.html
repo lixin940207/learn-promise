@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //多个回调，在状态改变的时候都会执行
+        let p = Promise.resolve(new Promise((resolve, reject) => {
+            resolve('OK')
+        })) // 返回的promise对象成功或失败取决于传入的promise对象
+        p.then(value => {
+            console.log(value)
+        })
+        p.then(value => {
+            alert(value)
+        })
+
+    </script>
+</body>
+</html>

@@ -32,7 +32,7 @@
                 if(n<=30){
                     resolve(n);//将p对象状态设为成功
                 }else{
-                    reject(n);//将p对象状态设为失败
+                    reject(n);//将p对象状态设为失败，除了reject也可以用throw error
                 }
             }, 1000);
         });
