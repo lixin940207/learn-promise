@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let p = new Promise((resolve, reject) => {
+        resolve('OK');
+        reject('OK');
+    });
+    console.log(p)
+    // p.then(value => {
+    //     console.log(value)
+    // }, reason => {
+    //     console.log(reason)
+    // })
+    function Promise(executor){
+
+        this.PromiseState = 'pending'
+        this.PromiseResult = null
+
+        // 执行期函数是同步调用的
+        resolve = (data) => {
+            if (this.PromiseState !== 'pending') return;
+            //1. 修改对象的状态
+            this.PromiseState = 'fulfilled';
+            //2。设置对象结果值
+            this.PromiseResult = data;
+        }
+        reject = (data) => {
+            if (this.PromiseState !== 'pending') return;
+            //1. 修改对象的状态
+            this.PromiseState = 'rejected';
+            //2。设置对象结果值
+            this.PromiseResult = data;
+        }
+        executor(resolve, reject);
+    }
+    Promise.prototype.then = function (onResolved, onRejected) {
+        
+    }
+    
+</script>
+</body>
+</html>
