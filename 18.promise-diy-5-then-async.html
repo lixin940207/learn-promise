@@ -58,7 +58,16 @@
                 }
             }
             if (this.PromiseState === 'rejected') {
-                onRejected(this.PromiseResult)
+                try {
+                    let result = onRejected(this.PromiseResult)
+                    if(result instanceof Promise){
+                        result.then(v=>{resolve(v)},r=>{reject(r)});
+                    }else{
+                        resolve(result)
+                    }
+                }catch (e) {
+                    reject(e)
+                }
             }
             if (this.PromiseState === 'pending') {
                 // 保存回调函数
