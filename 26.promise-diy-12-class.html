@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let p1 = new Promise((resolve, reject) => {
+        setTimeout(()=>{
+            resolve("oh yeah");
+        })
+    });
+    //console.log(p1)
+    let p2 = Promise.resolve("success");
+    let p3 = Promise.resolve("111")
+    let result = Promise.all([p1,p2,p3])
+    console.log(result)
+
+
+    
+</script>
+</body>
+</html>

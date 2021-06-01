@@ -8,7 +8,6 @@
 <script>
 
     function Promise(executor){
-
         this.PromiseState = 'pending'
         this.PromiseResult = null
         this.callback = [];
@@ -93,25 +92,55 @@
     Promise.prototype.catch = function (onRejected) {
         return this.then(undefined, onRejected)
     }
+    
+    Promise.resolve = function (value) {
+        return new Promise((resolve, reject) =>{
+            if (value instanceof Promise){
+                value.then(v=>{
+                    resolve(v);
+                }, r=>{
+                    reject(r);
+                })
+            }else{
+                resolve(value);
+            }
+        })
+    }
+    //reject 和resolve不一样，reject不管传入的是什么，都是rejct
+    Promise.reject = function (reason) {
+        return new Promise((resolve, reject)=>{
+            reject(reason)
+        })
+    }
 
-    let p = new Promise((resolve, reject) => {
-        //setTimeout(()=>{
-            resolve('OK');
-        //    }, 1000)
+    Promise.all = function (promises){
+        return new Promise((resolve, reject)=>{
+            let count = 0;
+            let arr = [];
+            for(let i=0; i< promises.length;i++){
+                promises[i].then(v=>{
+                    count ++;
+                    arr[i] = v;
+                    if (count === promises.length){
+                        resolve(arr);
+                    }
+                }, r=>{
+                    reject(r);
+                });
+            }
+        })
+    }
+
+    let p1 = new Promise((resolve, reject) => {
+        setTimeout(()=>{
+            resolve("oh yeah");
+            })
     });
-    console.log(p)
-    p.then().then(value=>{
-        console.log(222);
-    }).then(value => {
-        console.log(333);
-    }).catch(reason => {
-        console.warn(reason);
-    });
-    // let res = p.catch(reason => {
-    //     console.log('eh')
-    //     console.warn(reason);
-    // })
-    // console.log(res)
+    console.log(p1)
+    let p2 = Promise.resolve("success");
+    let p3 = Promise.resolve("111")
+    let result = Promise.all([p1,p2,p3])
+    console.log(result)
 
 
     
